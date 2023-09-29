@@ -1,4 +1,9 @@
 package TicTacToe.Models;
 
-public class Player {
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+
+public abstract class Player {
+    private GameSymbol symbol;
 }
