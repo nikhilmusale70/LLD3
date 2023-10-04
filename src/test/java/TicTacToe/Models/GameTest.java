@@ -1,21 +1,28 @@
 package TicTacToe.Models;
 
 
+import TicTacToe.Strategies.Playing.RandomPlayingStrategy;
 import org.junit.jupiter.api.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
 class GameTest {
+
+    private static final int BOARD_SIZE = 3; //Screaming case
     @Test
     public void testCreateGame(){
-        Board board = new Board(3);
+        Game game = Game.builder()
+                .withSize(BOARD_SIZE)
+                .withPlayer(new HumanPlayer(GameSymbol.O, new User()))
+                .withPlayer(new BotPlayer(GameSymbol.X, GameLevel.EASY, new RandomPlayingStrategy()))
+                .build();
 
-//        Game game = new Game();
+        assertEquals("if game created, it should have 2 players", 2, game.players.size());
     }
 
     @Test
     public void testCreateBoard(){
-        Board board = new Board(2);
+        Board board = new Board(BOARD_SIZE);
         int rowSize = board.getCells().size();
         assertEquals("Check if row size is equal",3, rowSize);
 
